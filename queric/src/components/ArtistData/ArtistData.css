@@ -1,0 +1,42 @@
+li {
+    list-style-type: none;
+}
+
+.artist-data-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-data-section {
+    width: 85vw;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: 0.15rem solid rgb(31, 31, 31);
+    border-top: 0.15rem solid #124170;
+    background-color: cadetblue;
+}
+
+.favorite-words {
+    display: flex;
+    flex-direction: column;
+}
+
+.other-favorite-words-body {
+    display: flex;
+}
+
+.section-header {
+    margin-top: 0;
+    padding: 0px 1rem 0px 1rem;
+    height: 4rem;
+    background-color: #124170;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.uniqueness-search {
+    background-color: #26667F;
+    width: 50%;
+    margin: 1%;
+}

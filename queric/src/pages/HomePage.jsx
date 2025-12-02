@@ -9,12 +9,7 @@ function HomePage () {
     const [artists, setArtists] = useState([]);
     const [analyzedData, setAnalyzedData] = useState([]);
 
-    useEffect (() => {
-        
-    }, [artists])
-
-
-    const searchArtist = async (searchTerm) => {
+    const onAddArtist = async (searchTerm) => {
         const response = await fetch('/api/search-artist', {
             method: 'POST',
             headers: { 'Content-Type': 'application/JSON' },
@@ -24,7 +19,7 @@ function HomePage () {
         if (response.status === 200) {
             const data = await response.json();
 
-            setArtists([...artists, data.artist])
+            setArtists(prev => [...prev, data.artist]);
         } else {
             console.log('Artist not found')
         }
@@ -36,28 +31,32 @@ function HomePage () {
     }
 
     const analyzeArtistLyrics = async () => {
-        const response = await fetch('/api/analyze-artists', {
+        if (artists.length < 1) {
+            window.alert('Please add at least one artist.');
+        } else {
+            const response = await fetch('/api/analyze-artists', {
             method: 'POST',
             headers: { 'Content-Type': 'application/JSON' },
             body: JSON.stringify({ artists })
-        });
+            });
 
-        if (response.status === 200) {
-            const data = await response.json();
-            setAnalyzedData(data.results);
-            navigate('/analysis', { state: data.results });
-        } else {
-            console.log('analysis failed')
+            if (response.status === 200) {
+                const data = await response.json();
+                setAnalyzedData(data.results);
+                navigate('/analysis', { state: data.results });
+            } else {
+                console.log('analysis failed')
+            }
         }
     }
 
     return (
-        <div> 
+        <div className="home-page"> 
             <h2>Queric</h2>
-            <SearchBar onSearch={searchArtist} />
-            <div>
+            <SearchBar onAddArtist={onAddArtist} />
+            <div className="artist-list-wrapper">
                 <ArtistList artists={artists} onRemove={removeArtist}/>
-                <button onClick={analyzeArtistLyrics}>Analyze!</button>
+                <button className="analyze-button" onClick={analyzeArtistLyrics}>Analyze!</button>
             </div>
         </div>
     );

@@ -16,6 +16,3 @@ class ArtistRequest(BaseModel):
 class AnalyzeRequest(BaseModel):
     artists: List[ArtistInput]
 
-class CompareRequest(BaseModel):
-    artist1: str
-    artist2: str

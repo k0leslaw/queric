@@ -1,65 +1,75 @@
-import { useState } from "react";
-import { BiSearchAlt } from "react-icons/bi";
-
 import './SearchBar.css';
 
-function SearchBar ({ onSearch }) {
+import { BiSearchAlt } from "react-icons/bi";
+import { useState, useCallback, useMemo } from "react";
+import debounce from 'lodash/debounce';
+
+function SearchBar ({ onAddArtist }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    const [timeoutId, setTimeoutId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const cursorStyle = isLoading ? 'wait' : 'text';
 
-    const fetchSuggestions = async (query) => {
+    const fetchSuggestions = useCallback(async (query) => {
+        setSuggestions([])
+        if (!query.trim()) return;
+        
         const response = await fetch(`/api/search-bar-suggest-artists?query=${query}`);
-        if (response.ok) {
+        if (!response.ok) {
+            setSuggestions([]);
+        } else {
             const data = await response.json();
             setSuggestions(data.suggestions);
-        } else {
-            setSuggestions([]);
         }
-    }
+    }, []);
+
+    const debouncedFetch = useMemo(
+        () => debounce(fetchSuggestions, 300),
+        [fetchSuggestions]
+    );
 
     const handleChange = (e) => {
-        const value = e.target.value;
-        setSearchTerm(value);
-
-        if (timeoutId) clearTimeout(timeoutId);
-        const newTimeoutId = setTimeout(() => {
-            if (value.trim() !== '') {
-                fetchSuggestions(value);
-            } else {
-                setSuggestions([]);
-            }
-        }, 150);
-        setTimeoutId(newTimeoutId);
+        setSearchTerm(e.target.value);
+        debouncedFetch(e.target.value);
     }
 
     const handleSelectSuggestion = (suggestion) => {
         setSearchTerm(suggestion);
         setSuggestions([]);
-        onSearch(suggestion);
+
+        debouncedFetch.cancel();
     }
 
-    const handleSearchClick = () => {
-        if (searchTerm.trim() !== '') {
-            setSuggestions([]);
-            onSearch(searchTerm);
+    const handleAddArtist = async () => {
+        if (searchTerm.trim().length === 0) {
+            window.alert('Please type an artist into the search bar.')
+            return;
         }
+        setSuggestions([]);
+        setIsLoading(true);
+        await onAddArtist(searchTerm);
+        setIsLoading(false);
+        setSuggestions([]);
     }
 
     return (
-        <div id='artist-search-bar-container'>
-            <input 
-                id='artist-search-bar'
-                type='text' 
-                placeholder='Search for an artist...' 
-                value={searchTerm}
-                autoComplete='off'
-                onChange={handleChange}
-            />
-            <BiSearchAlt id='search-icon' onClick={handleSearchClick} />
-            
+        <div className="artist-search-wrapper">
+            <div id='artist-search-bar-container'>
+                <BiSearchAlt className='search-icon'/>
+                <input 
+                    style={{ cursor: cursorStyle }}
+                    id='artist-search-bar'
+                    type='text' 
+                    placeholder='Search for an artist...' 
+                    value={searchTerm}
+                    autoComplete='off'
+                    readOnly={isLoading}
+                    onChange={handleChange}
+                />
+            </div>
+            <button className="add-button" onClick={handleAddArtist}>+</button>
             {suggestions.length > 0 && (
-                <ul className="suggestions-dropdown">
+                <ul className="suggestions-dropdown" >
                     {suggestions.map((suggestion, i) => (
                         <li className='artist-suggestion' key={i} onClick={() => handleSelectSuggestion(suggestion)}>
                             {suggestion}

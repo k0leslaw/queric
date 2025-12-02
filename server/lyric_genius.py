@@ -6,7 +6,7 @@ load_dotenv()
 # connect to lyricsgenius api
 from lyricsgenius import Genius
 
-genius = Genius(os.getenv('GENIUS_ACCESS_TOKEN'))
+genius = Genius(os.getenv('GENIUS_ACCESS_TOKEN'), sleep_time=2)
 genius.verbose = False
 genius.remove_section_headers = True
 genius.excluded_terms = ["(Live)"]

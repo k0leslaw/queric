@@ -27,12 +27,23 @@ def analyze_artists(request: AnalyzeRequest):
         if analysis:
             results.append({
                 'name': artistData.name,
-                'word count': analysis.wordcount,
-                'verbs': analysis.verbs,
-                'adjectives': analysis.adjectives,
-                'nouns': analysis.nouns,
-                'pronouns': analysis.pronouns
+                'word_count': analysis.word_count,
+                'most_common': analysis.most_common,
+                'unique_count': analysis.unique_count,
+                
+                'favorite_verb': analysis.favorite_verb,
+                'verb_count': analysis.verb_count,
+                
+                'favorite_adjective': analysis.favorite_adjective,
+                'adjective_count': analysis.adjective_count,
+                
+                'favorite_noun': analysis.favorite_noun,
+                'noun_count': analysis.noun_count,
+                
+                'favorite_pronoun': analysis.favorite_pronoun,
+                'pronoun_count': analysis.pronoun_count
             })
+            print(results)
     return {'results': results}
 
 @app.get('/api/search-bar-suggest-artists')
