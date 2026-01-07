@@ -2,6 +2,16 @@ li {
     list-style-type: none;
 }
 
+.artist-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.artist-header h5 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
 .artist-data-container {
     display: flex;
     flex-direction: column;
@@ -21,8 +31,14 @@ li {
     flex-direction: column;
 }
 
-.other-favorite-words-body {
+.favorite-words-table {
+    width: 30%;
+    table-layout: fixed;
+}
+
+.favorite-words-body {
     display: flex;
+    justify-content: center;
 }
 
 .section-header {
@@ -33,10 +49,62 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 2rem;
 }
 
 .uniqueness-search {
     background-color: #26667F;
     width: 50%;
     margin: 1%;
+}
+
+.parts-of-speech {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.parts-of-speech th, .parts-of-speech td {
+    padding: 6px 10px;
+    text-align: left;
+}
+
+.pos-th, .pos-percent {
+    width: 70%;
+}
+
+.parts-of-speech th:nth-child(2),
+.parts-of-speech th:nth-child(3),
+.parts-of-speech td:nth-child(2),
+.parts-of-speech td:nth-child(3) {
+    width: 15%;            
+    text-align: center;    
+}
+
+.parts-of-speech td {
+    font-size: 2rem;
+}
+
+.parts-of-speech .pos-percent {
+    font-size: 2.25rem;
+}
+
+.parts-of-speech th {
+    font-size: 1.25rem;
+}
+
+.favorite-words-input {
+    border: 1px solid black;
+    background-color: #26667F;
+    width: 35px;
+    padding: 2px 4px;
+    font-size: 0.8rem;
+}
+
+.favorite-words-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    justify-content: flex-start;
+    white-space: nowrap;
 }

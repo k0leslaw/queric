@@ -25,7 +25,7 @@ class ArtistAnalysis:
         self.favorite_pronoun = favorite_pronoun
         self.pronoun_count = pronoun_count
         
-def getMostCommonWords(lyrics, top_n=5, allow_stop=False):
+def getMostCommonWords(lyrics, top_n=15, allow_stop=False):
     com_doc = nlp(lyrics.lower())
     words = []
     

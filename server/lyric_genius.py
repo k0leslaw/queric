@@ -12,5 +12,5 @@ genius.remove_section_headers = True
 genius.excluded_terms = ["(Live)"]
 
 def searchArtist(artist_name):
-    artist = genius.search_artist(artist_name, max_songs=3, sort="popularity")
+    artist = genius.search_artist(artist_name, max_songs=5, sort="popularity")
     return artist if artist else None
