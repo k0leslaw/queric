@@ -1,54 +1,61 @@
-div {
-    /**border: 1px solid red;**/
-    
+.temp {
+    background-color: grey;
+}
+.home-top-container, .quick-actions-container, .recent-popular-searches-container, .curated-presets-container, .recent-analyses-container, .home-bttm-right-container {
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.quick-actions-container, .recent-popular-searches-container, .curated-presets-container, .home-bttm-right-container, .recent-analyses-container {
+    padding: 10px;
 }
 
 .home {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 0 20px;
+}
+.home-top-container, .home-bttm-container {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+}
+.home-top-container {
+    padding: 20px;
 }
 
-.home-top, .home-bottom {
+.home-top-left-container {
+    flex-grow: 1;
+}
+.home-top-right-container {
     display: flex;
-    justify-content: space-between;
-    margin: 10px;
+    flex-direction: column;
+    gap: 20px;
+    width: 25%;
+}
+.quick-actions-container {
+    height: 33%;
+}
+.recent-popular-searches-container {
     flex: 1;
 }
 
-.home-top-right {
-    flex-direction: column;
-    align-content: space-around;
-    width: 30%;
-}
-
-.home-bottom-left {
+.home-bttm-left-container {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 20px;
 }
-
-.curated-presets {
-    margin-bottom: 20px;
-}
-
-.home-bottom-right {
+.home-bttm-right-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 35%;
 }
-
-.search-actions {
-    width: 60%;
+.curated-presets-container {
+    height: 50%;
 }
-
-.presets {
-    display: flex;
-}
-
-.quick-actions {
-    display: flex;
-    flex-direction: column;
-}
-
-.home-top, .quick-actions, .recent-popular-searches, .curated-presets, .recent-analyses-and-demos, .home-bottom-right {
-    border: 1px solid grey;
+.recent-analyses-container {
+    height: 50%;
 }

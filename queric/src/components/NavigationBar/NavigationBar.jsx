@@ -1,6 +1,6 @@
 function NavigationBar () {
     return (
-        <div className="nav-bar">
+        <div className="nav-bar" style={{ backgroundColor: 'green' }}>
             <p>Navbar</p>
         </div>
     )
