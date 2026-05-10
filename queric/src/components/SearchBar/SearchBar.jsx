@@ -1,6 +1,5 @@
 import './SearchBar.css';
 
-import { BiSearchAlt } from "react-icons/bi";
 import { useState, useCallback, useMemo } from "react";
 import debounce from 'lodash/debounce';
 
@@ -53,31 +52,55 @@ function SearchBar ({ onAddArtist }) {
     }
 
     return (
-        <div className="artist-search-wrapper">
-            <div id='artist-search-bar-container'>
-                <BiSearchAlt className='search-icon'/>
-                <input 
+        <div className="search-container">
+            <h3>Global Search</h3>
+            <div className="search-bar-container">
+                <input
+                    className="search-bar" 
                     style={{ cursor: cursorStyle }}
-                    id='artist-search-bar'
-                    type='text' 
-                    placeholder='Search for an artist...' 
-                    value={searchTerm}
-                    autoComplete='off'
-                    readOnly={isLoading}
-                    onChange={handleChange}
+                    id="artist-search-bar"
+                    type="text" 
+                    placeholder="e.g., 'Kendrick Lamar, DAMN., DNA'" 
+                    
                 />
+                <div className="search-buttons-container">
+                    <button className="primary-button">Search</button>
+                    <button className="secondary-button">Batch Upload</button>
+                    <button className="primary-button">Compare Mode</button>
+                </div>
             </div>
-            <button className="add-button" onClick={handleAddArtist}>+</button>
-            {suggestions.length > 0 && (
-                <ul className="suggestions-dropdown" >
-                    {suggestions.map((suggestion, i) => (
-                        <li className='artist-suggestion' key={i} onClick={() => handleSelectSuggestion(suggestion)}>
-                            {suggestion}
-                        </li>
-                    ))}
-
-                </ul>
-            )}
+            <div className="search-suggestions">
+                <h3>Try: Billie Eilish, When We All Fall Asleep</h3>
+                <h3>Try: The Beatles, Bob Dylan</h3>
+                <h3>Try: Classic rock</h3>
+            </div>
+            <h3>Filters</h3>
+            <div className="search-filters">
+                <label>
+                    <input type="checkbox"/>
+                    <span>Artist</span>
+                </label>
+                <label>
+                    <input type="checkbox"/>
+                    <span>Album</span>
+                </label>
+                <label>
+                    <input type="checkbox"/>
+                    <span>Song</span>
+                </label>
+                <label>
+                    <input type="checkbox"/>
+                    <span>Year</span>
+                </label>
+                <label>
+                    <input type="checkbox"/>
+                    <span>Language</span>
+                </label>
+                <label>
+                    <input type="checkbox"/>
+                    <span>Genre</span>
+                </label>
+            </div>
         </div>
     );
 }

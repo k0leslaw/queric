@@ -1,0 +1,39 @@
+.home-recent-analyses-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    aspect-ratio: 1 / 1;
+}
+
+.hra-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.hra-title {
+    font-family: "IBM Plex Sans";
+    font-size: 18px;
+    color: #111;
+}
+.hra-desc {
+    font-size: 14px;
+}
+
+.hra-button-container {
+    display: flex;
+    width: 36%;
+    height: 8%;
+}
+
+.hra-button-container button {
+    flex: 1;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 3px;
+}

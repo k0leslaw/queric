@@ -1,0 +1,58 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 50px;
+    max-height: 100px;
+    flex: 1;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid rgb(218, 218, 218);
+}
+
+.footer-left-container {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+.footer-logo {
+    display: flex;
+    font-family: "IBM Plex Sans";
+}
+
+.footer-top-container {
+    display: flex;
+    padding: 20px 5px;
+}
+
+.footer-link-container {
+    font-family: "IBM Plex Sans";
+    font-size: 14px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-rows: auto;
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem 12vw;
+    padding: 0;
+    width: max-content;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.footer-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5px;
+    font-family: "IBM Plex Sans";
+    font-size: 12px;
+    border-top: 1px solid rgb(218, 218, 218);
+}
+.footer-social-links {
+    display: flex;
+    gap: 10px;
+}
+.footer-logo-icon, .social-icon {
+    margin-right: 4px;
+}
+.c {
+    font-size: 14px;
+}

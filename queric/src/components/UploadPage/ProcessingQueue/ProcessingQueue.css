@@ -1,0 +1,17 @@
+.processing-queue-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 10px;
+}
+
+.pq-header-right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pq-queue {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

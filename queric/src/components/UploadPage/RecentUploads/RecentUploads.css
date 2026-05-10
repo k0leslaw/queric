@@ -1,0 +1,18 @@
+.ru-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.ru-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 5px;
+}
+
+.ru-item-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

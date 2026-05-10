@@ -1,0 +1,28 @@
+.completed-analysis-item-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: rgb(240, 240, 240);
+    gap: 5px;
+}
+
+.cai-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cai-title {
+    font-weight: 450;
+}
+
+.cai-summary {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.open-details-button {
+    align-self: center;
+}

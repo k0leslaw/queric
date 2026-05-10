@@ -1,0 +1,55 @@
+.text-upload-container {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+.file-upload, .copy-paste-upload {
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    flex: 1;
+    padding: 10px;
+}
+
+.ua-right-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px 20px 20px 0;
+    gap: 20px;
+}
+
+.upload-lyrics-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    gap: 10px;
+    padding: 15px;
+}
+.copy-paste-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.copy-paste-upload textarea {
+    background-color: #FFF;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    color: #111;
+    flex: 1;
+    font-family: "IBM Plex Sans";
+}
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ua-file-upload-header {
+    display: flex;
+    justify-content: space-between;
+}
+.ua-file-upload-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

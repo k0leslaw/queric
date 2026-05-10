@@ -1,0 +1,40 @@
+.home-curated-preset-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    aspect-ratio: 1 / 1;
+}
+
+.hcp-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.hcp-title {
+    font-family: "IBM Plex Sans";
+    font-size: 18px;
+    color: #111;
+}
+.hcp-desc {
+    font-size: 14px;
+}
+
+.hcp-button-container {
+    display: flex;
+    width: 75%;
+    height: 8%;
+    gap: 3%;
+}
+
+.hcp-button-container button {
+    flex: 1;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 3px;
+}
