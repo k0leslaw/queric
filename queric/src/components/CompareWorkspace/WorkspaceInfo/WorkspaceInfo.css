@@ -1,0 +1,35 @@
+.workspace-info-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    border: 1px solid rgb(218, 218, 218);
+    padding: 20px;
+    gap: 10px;
+}
+
+.wi-entry-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.wi-entry {
+    display: flex;
+    justify-content: space-between;
+}
+.wi-entry h3 {
+    width: 60px;
+    flex-shrink: 0;
+}
+.wi-entry select, .wi-entry input, .wi-entry textarea {
+    flex: 1;
+    background-color: rgb(245, 245, 245);;
+    color: #111;
+    border-radius: 3px;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.wi-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

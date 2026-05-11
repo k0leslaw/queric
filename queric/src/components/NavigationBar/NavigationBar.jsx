@@ -11,7 +11,7 @@ function NavigationBar () {
                 <h1 className="nav-logo"><BsMusicNoteList />Queric</h1>
                 <div className="nav-link-container">
                     <Link to="/">Home</Link>
-                    <Link to="/">Compare Workspace</Link>
+                    <Link to="/compare-workspace">Compare Workspace</Link>
                     <Link to="/upload">Upload & Analyze</Link>
                     <Link to="/">Account & Settings</Link>
                 </div>

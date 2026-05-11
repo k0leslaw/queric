@@ -1,0 +1,27 @@
+.ssi-container {
+    display: flex;
+    gap: 10px;
+}
+
+.ssi-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    justify-content: space-evenly;
+}
+
+.ssi-remove-song {
+    display: flex;
+    gap: 10px;
+}
+.ssi-remove-song h3 {
+    align-self: center;
+}
+
+.album-cover {
+    object-fit: cover;
+    border-radius: 3px;
+    width: 70px;
+    height: 70px;
+}
+

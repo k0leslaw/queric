@@ -1,0 +1,26 @@
+.compare-workspace-container {
+    display: flex;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 20px;
+}
+
+.cw-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cw-right {
+    flex: 1;
+}
+
+.add-chart-button {
+    width: 100%;
+}
+
+.ac-button-container {
+    border-radius: 3px;
+    border: 1px solid rgb(218, 218, 218);
+    padding: 10px 20px;
+}
