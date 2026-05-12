@@ -13,7 +13,7 @@ function NavigationBar () {
                     <Link to="/">Home</Link>
                     <Link to="/compare-workspace">Compare Workspace</Link>
                     <Link to="/upload">Upload & Analyze</Link>
-                    <Link to="/">Account & Settings</Link>
+                    <Link to="/">Explore</Link>
                 </div>
             </div>
             <div className="nav-right-container">

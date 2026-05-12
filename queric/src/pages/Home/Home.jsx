@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Footer from "../../components/Footer/Footer";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -14,23 +16,17 @@ function Home () {
             <div className="home-top-container">
                 <div className="home-top-left-container">
                     <h1 className="header-font">Find lyrics, analyze language, discover patterns</h1>
-                    <h3 className="subtitle">Search for existing analyses by song, album, or artist. Enter multiple queries separated by commas (e.g. 'Adele, 21, Someone Like You').</h3>
+                    <h3 className="subtitle">Search for existing analyses by title, song, album, or artist. Enter multiple queries separated by commas (e.g. 'The Complete Dirty South, Weathervanes').</h3>
                     <SearchBar />
                 </div>
                 <div className="home-top-right-container">
                     <div className="quick-actions-container">
                         <h3 className="header-font">Quick Actions</h3>
-                        <button className="primary-button">Upload Lyrics</button>
-                        <button className="secondary-button">Open Compare Workspace</button>
-                        <button className="secondary-button">Explore Presets</button>
+                        <Link to="/upload"><button className="primary-button">Upload Lyrics</button></Link>
+                        <Link to="/compare-workspace"><button className="secondary-button">Open Compare Workspace</button></Link>
+                        <Link to="/"><button className="secondary-button">Explore Presets</button></Link>  
                     </div>
-                    <div className="recent-popular-searches-container">
-                        <h3 className="header-font">Recent Popular Searches</h3>
-                        <RecentPopularSearch />
-                        <RecentPopularSearch />
-                        <RecentPopularSearch />
-                        <RecentPopularSearch />
-                    </div>
+                    
                 </div>
             </div>
             <div className="home-bttm-container">

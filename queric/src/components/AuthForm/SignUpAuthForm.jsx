@@ -79,13 +79,10 @@ function SignUpAuthForm () {
             <div className="suaf-footer-container">
                 <div className="suaf-buttons">
                     <button className="primary-button" onClick={signUp}>Sign Up</button>
-                    <button onClick={signInWithGoogle}>Sign Up with Google</button>
+                    <button className="secondary-button" onClick={signInWithGoogle}>Sign Up with Google</button>
                 </div>
                 <Link to="/login">
                     <h3 className="subtitle">Have an account? Sign in instead.</h3>
-                </Link>
-                <Link to="/sign-up">
-                    <h3 className="subtitle">Forgot Password</h3>
                 </Link>
             </div>
         </div>

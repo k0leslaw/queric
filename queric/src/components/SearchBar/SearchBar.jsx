@@ -65,8 +65,7 @@ function SearchBar ({ onAddArtist }) {
                 />
                 <div className="search-buttons-container">
                     <button className="primary-button">Search</button>
-                    <button className="secondary-button">Batch Upload</button>
-                    <button className="primary-button">Compare Mode</button>
+                    <button className="secondary-button">Explore All</button>
                 </div>
             </div>
             <div className="search-suggestions">
@@ -74,33 +73,7 @@ function SearchBar ({ onAddArtist }) {
                 <h3>Try: The Beatles, Bob Dylan</h3>
                 <h3>Try: Classic rock</h3>
             </div>
-            <h3>Filters</h3>
-            <div className="search-filters">
-                <label>
-                    <input type="checkbox"/>
-                    <span>Artist</span>
-                </label>
-                <label>
-                    <input type="checkbox"/>
-                    <span>Album</span>
-                </label>
-                <label>
-                    <input type="checkbox"/>
-                    <span>Song</span>
-                </label>
-                <label>
-                    <input type="checkbox"/>
-                    <span>Year</span>
-                </label>
-                <label>
-                    <input type="checkbox"/>
-                    <span>Language</span>
-                </label>
-                <label>
-                    <input type="checkbox"/>
-                    <span>Genre</span>
-                </label>
-            </div>
+            
         </div>
     );
 }

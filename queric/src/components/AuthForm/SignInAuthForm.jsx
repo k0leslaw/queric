@@ -54,6 +54,9 @@ function SignInAuthForm () {
                 <Link to="/sign-up">
                     <h3 className="subtitle">New here? Sign up instead.</h3>
                 </Link>
+                <Link to="/sign-up">
+                    <h3 className="subtitle">Forgot Password</h3>
+                </Link>
             </div>
         </div>
     )
