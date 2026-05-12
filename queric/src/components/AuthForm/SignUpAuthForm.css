@@ -1,0 +1,15 @@
+.sign-up-auth-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.suaf-footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.suaf-footer-container button {
+    
+}

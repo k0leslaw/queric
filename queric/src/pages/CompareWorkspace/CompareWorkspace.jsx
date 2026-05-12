@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { SupabaseClient } from "@supabase/supabase-js";
+import { useState, useEffect } from "react";
 
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Footer from "../../components/Footer/Footer";
@@ -7,8 +8,11 @@ import WorkspaceInfo from "../../components/CompareWorkspace/WorkspaceInfo/Works
 import Chart from "../../components/CompareWorkspace/Chart/Chart";
 
 import "./CompareWorkspace.css";
+import { supabase } from "../../supabaseClient";
 
 function CompareWorkspace () {
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
     const [charts, setCharts] = useState([]);
 
     const addChart = () => {
@@ -18,6 +22,22 @@ function CompareWorkspace () {
     const onDeleteChart = (id) => {
         setCharts(charts.filter(item => item.id !== id));
     }
+
+    if (!user) {
+        alert("Please sign in before using the compare workspace.");
+    } else if (!user.email_confirmed_at) {
+        alert("Please confirm your email to finish setting up your account.");
+    }
+
+    useEffect(() => {
+        const loadUser = async () => {
+            const { data, error } = supabase.auth.getUser();
+            if (data?.user) setUser(data.user);
+            setLoading(false);
+        }
+
+        loadUser();
+    }, []);
 
     return (
         <div>

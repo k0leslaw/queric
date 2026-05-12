@@ -7,7 +7,7 @@ function SelectedSongs () {
         <div className="selected-songs-container">
             <div className="ss-header">
                 <h2 className="header-font">Selected Songs (4)</h2>
-                <button className="secondary-button">Clear</button>
+                
             </div>
             <div className="ss-songs">
                 <SelectedSongItem />
@@ -17,6 +17,7 @@ function SelectedSongs () {
             </div>
             <div className="ss-footer">
                 <button className="primary-button">Add Song</button>
+                <button className="secondary-button">Clear</button>
             </div>
         </div>
     )

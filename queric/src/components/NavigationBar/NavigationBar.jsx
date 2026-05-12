@@ -18,7 +18,9 @@ function NavigationBar () {
             </div>
             <div className="nav-right-container">
                 <Link to="/">Help</Link>
-                <button className="secondary-button sign-in-button"><RiAccountCircleFill className="account-icon"/>Sign in</button>
+                <Link to="/login">
+                    <button className="secondary-button sign-in-button"><RiAccountCircleFill className="account-icon"/>Sign in</button>
+                </Link>
             </div>
         </div>
     )

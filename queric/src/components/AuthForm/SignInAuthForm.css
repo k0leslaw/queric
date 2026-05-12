@@ -1,0 +1,15 @@
+.sign-in-auth-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.siaf-footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.siaf-button-container button {
+    
+}

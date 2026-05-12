@@ -20,7 +20,7 @@ function Home () {
                 <div className="home-top-right-container">
                     <div className="quick-actions-container">
                         <h3 className="header-font">Quick Actions</h3>
-                        <button className="primary-button">Upload Lyrics CSV</button>
+                        <button className="primary-button">Upload Lyrics</button>
                         <button className="secondary-button">Open Compare Workspace</button>
                         <button className="secondary-button">Explore Presets</button>
                     </div>
