@@ -17,7 +17,6 @@ function SelectedSongs () {
             </div>
             <div className="ss-footer">
                 <button className="primary-button">Add Song</button>
-                <button className="secondary-button">Bulk Add</button>
             </div>
         </div>
     )

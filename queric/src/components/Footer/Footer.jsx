@@ -26,7 +26,7 @@ function Footer () {
                 </div>                
             </div>
             <div className="footer-bottom-container">
-                <h3 className="c">© 2026 Queric — All rights reserved.</h3>
+                <h3 className="c">© 2026 Queric. All rights reserved.</h3>
                 <div className="footer-social-links">
                     <Link to="/"><IoLogoYoutube className="social-icon"/>YouTube</Link>
                     <Link to="/"><IoLogoGithub className="social-icon" />GitHub</Link>

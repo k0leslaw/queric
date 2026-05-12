@@ -12,14 +12,19 @@
 }
 
 .cw-right {
-    flex: 1;
+    --unit: calc((100vw - 410px) / 4);
+
+    display: grid;
+    grid-template-columns: repeat(4, var(--unit));
+    grid-auto-rows: var(--unit);
+    gap: 20px;
 }
 
 .add-chart-button {
     width: 100%;
 }
 
-.ac-button-container {
+.ac-button-container, .cw-zoom-container {
     border-radius: 3px;
     border: 1px solid rgb(218, 218, 218);
     padding: 10px 20px;
