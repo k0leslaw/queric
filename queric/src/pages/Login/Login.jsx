@@ -1,4 +1,4 @@
-import SignInAuthForm from "../../components/AuthForm/SignInAuthForm";
+import AuthForm from "../../components/AuthForm/AuthForm";
 
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Footer from "../../components/Footer/Footer";
@@ -10,7 +10,7 @@ function Login () {
         <div className="login">
             <NavigationBar />
             <div className="login-container">
-                <SignInAuthForm />
+                <AuthForm />
             </div>
             <Footer />
         </div>

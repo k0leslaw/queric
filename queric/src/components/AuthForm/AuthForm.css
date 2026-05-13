@@ -1,0 +1,51 @@
+.sign-in-auth-form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 20%;
+    gap: 5px;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.google-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.auth-button {
+    width: 100%;
+    font-size: 14px;
+}
+.borderless-button {
+    background-color: #FFF;
+    color: #111;
+    border: none;
+}
+.borderless-button:hover {
+    border:  none;
+    background-color: #FFF;
+}
+
+.auth-secondary-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.manual-sign-in-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+.sign-up-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.su-footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
