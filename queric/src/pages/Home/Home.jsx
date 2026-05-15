@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import Footer from "../../components/Footer/Footer";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import HomeCuratedPreset from "../../components/HomeCuratedPreset/HomeCuratedPreset";
-import HomeRecentAnalyses from "../../components/HomeRecentAnalyses/HomeRecentAnalyses";
+import CuratedPreset from "../../components/Home/CuratedPreset/CuratedPreset";
+import RecentAnalyses from "../../components/Home/RecentAnalyses/RecentAnalyses";
 import RecentPopularSearch from "../../components/RecentPopularSearch/RecentPopularSearch";
 
 import "./Home.css";
@@ -33,20 +33,20 @@ function Home () {
                 <div className="home-bttm-left-container">
                     <div className="curated-presets-container">
                         <h2 className="header-font">Curated Presets</h2>
-                        <h3 className="subtitle">Ready-made analyses and collections to get started quickly.</h3>
+                        <h3 className="subtitle">Ready-made analysis presets to get started quickly.</h3>
                         <div className="hcp-container">
-                            <HomeCuratedPreset />
-                            <HomeCuratedPreset />
-                            <HomeCuratedPreset />
+                            <CuratedPreset />
+                            <CuratedPreset />
+                            <CuratedPreset />
                         </div>
                     </div>
                     <div className="recent-analyses-container">
                         <h2 className="header-font">Recent Analyses & Demos</h2>
-                        <h3 className="subtitle">Sample analysis previews showcasing Queric insights.</h3>
+                        <h3 className="subtitle">Existing analyses showcasing Queric insights.</h3>
                         <div className="hra-container">
-                            <HomeRecentAnalyses />
-                            <HomeRecentAnalyses />
-                            <HomeRecentAnalyses />
+                            <RecentAnalyses />
+                            <RecentAnalyses />
+                            <RecentAnalyses />
                         </div>
                     </div>
                 </div>

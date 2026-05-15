@@ -1,7 +1,7 @@
-import testPhoto from "./../../assets/test-graph.png"
-import "./HomeRecentAnalyses.css";
+import testPhoto from "./../../../assets/test-graph.png"
+import "./RecentAnalyses.css";
 
-function HomeRecentAnalyses () {
+function RecentAnalyses () {
     return (
         <div className="home-recent-analyses-container">
             <img src={testPhoto}></img>
@@ -10,10 +10,10 @@ function HomeRecentAnalyses () {
                 <h3 className="hra-desc">Curated by user3728</h3>
             </div>
             <div className="hra-button-container">
-                <button className="primary-button">Apply Preset</button>
+                <button className="primary-button">View Analysis</button>
             </div>
         </div>
     )
 }
 
-export default HomeRecentAnalyses;
+export default RecentAnalyses;

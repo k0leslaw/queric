@@ -1,7 +1,7 @@
-import testPhoto from "./../../assets/test-img.jpg"
-import "./HomeCuratedPreset.css";
+import testPhoto from "./../../../assets/test-img.jpg"
+import "./CuratedPreset.css";
 
-function HomeCuratedPreset () {
+function CuratedPreset () {
     return (
         <div className="home-curated-preset-container">
             <img src={testPhoto}></img>
@@ -17,4 +17,4 @@ function HomeCuratedPreset () {
     )
 }
 
-export default HomeCuratedPreset;
+export default CuratedPreset;

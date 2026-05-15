@@ -61,7 +61,6 @@ function SearchBar ({ onAddArtist }) {
                     id="artist-search-bar"
                     type="text" 
                     placeholder="e.g., 'Kendrick Lamar, DAMN., DNA'" 
-                    
                 />
                 <div className="search-buttons-container">
                     <button className="primary-button">Search</button>
