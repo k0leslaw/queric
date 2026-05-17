@@ -1,5 +1,5 @@
 import { supabase } from "../../supabaseClient";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import "./AuthForm.css";
@@ -9,8 +9,11 @@ function SignInAuthForm () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [isMatchingPassword, setIsMatchingPassword] = useState(true);
     const [username, setUsername] = useState("");
     const [displayName, setDisplayName] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [resetEmail, setResetEmail] = useState("");
 
     const navigate = useNavigate();
 
@@ -30,7 +33,7 @@ function SignInAuthForm () {
 
     const signUp = async () => {
         if (password !== confirmPassword) {
-            alert("Passwords do not match");
+            setIsMatchingPassword(false);
             return;
         }
         
@@ -84,6 +87,34 @@ function SignInAuthForm () {
         }
     }
 
+    const forgotPassword = async () => {
+        try {
+            const { data, error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+                redirectTo: `http://localhost:5173/login?authType=${"reset-password"}`,
+            })
+        } catch (err) {
+            console.error("Error resetting password:", err);
+        }
+    }
+
+    const resetPassword = async () => {
+        try {
+            if (newPassword !== confirmPassword) {
+            setIsMatchingPassword(false);
+            return;
+        }
+            const { data, error } = await supabase.auth.updateUser({
+                password: newPassword
+            })
+        } catch (err) {
+            console.error("Error resetting password,", err);
+        }
+    }
+
+    useEffect(() => {
+        setResetEmail(email);
+    }, [email])
+
     return (
         <div className="sign-in-auth-form-container">
             {authType == "google" && 
@@ -109,7 +140,7 @@ function SignInAuthForm () {
                     <input placeholder="password" type="password" onChange={ e => setPassword(e.target.value) } />
                     <button className="primary-button" onClick={signIn}>Sign In</button>
                     <div className="auth-secondary-container">
-                        <button className="borderless-button">Forgot Password</button>
+                        <button className="borderless-button" onClick={forgotPassword}>Forgot Password</button>
                         <h3 className="borderless-button">|</h3>
                         <button className="borderless-button" onClick={() => setAuthType("sign-up")}>New here? Sign up</button>
                     </div>
@@ -124,10 +155,30 @@ function SignInAuthForm () {
                     <input placeholder="email" onChange={ e => setEmail(e.target.value) } />
                     <input placeholder="password" type="password" onChange={ e => setPassword(e.target.value) } />
                     <input placeholder="confirm password" type="password" onChange={ e => setConfirmPassword(e.target.value) } />
+
+                    {!isMatchingPassword && <h3 className="password-match-text">Passwords must match.</h3>}
+                    
                     <div className="su-footer-container">
                         <div className="suaf-buttons">
                             <button className="primary-button" onClick={signUp}>Sign Up</button>
                             <button className="secondary-button" onClick={signInWithGoogle}>Sign in with Google</button>
+                        </div>
+                        <button className="borderless-button" onClick={() => {setAuthType("google")}}>Back to sign in</button>
+                    </div>
+                </div>
+            }
+
+            {authType == "reset-password" && 
+                <div className="sign-up-container">
+                    <input placeholder="email" onChange={ e => setEmail(e.target.value) } />
+                    <input placeholder="new password" type="password" onChange={ e => setNewPassword(e.target.value) } />
+                    <input placeholder="confirm password" type="password" onChange={ e => setConfirmPassword(e.target.value) } />
+
+                    {!isMatchingPassword && <h3 className="password-match-text">Passwords must match.</h3>}
+                    
+                    <div className="su-footer-container">
+                        <div className="suaf-buttons">
+                            <button className="primary-button" onClick={resetPassword}>Reset Password</button>
                         </div>
                         <button className="borderless-button" onClick={() => {setAuthType("google")}}>Back to sign in</button>
                     </div>
