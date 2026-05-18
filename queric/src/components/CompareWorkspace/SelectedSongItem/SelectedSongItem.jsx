@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import "./SelectedSongItem.css";
 
-function SelectedSongItem ({ id, title, artist, date, trackCount, coverId, removeRelease }) {
+function SelectedSongItem ({ id, title, artist, date, trackCount, coverId, removeRelease, AddLyrics }) {
     const coverUrl = coverId
         ? `https://coverartarchive.org/release/${coverId}/front-250`
         : null;
@@ -8,6 +9,15 @@ function SelectedSongItem ({ id, title, artist, date, trackCount, coverId, remov
     const handleImageError = (e) => {
         e.target.src = "https://placehold.co/250x250?text=No+Cover+Art";
     };
+
+    useEffect(() => {
+        try {
+            AddLyrics(encodeURIComponent(artist), encodeURIComponent(title));
+        } catch (err) {
+            removeRelease(id);
+            console.error("Error adding release:", err)
+        }
+    }, [])
     
     return (
         <div className="ssi-container">

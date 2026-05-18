@@ -106,8 +106,8 @@ function AddSongPopup ({ setIsAddingSong, addRelease }) {
                         release={result} 
                         releaseType={searchTypeIsSong ? "song" : "album"} 
                         title={result.title}
-                        albumName={result.releases[0].title ? result.releases[0].title : ""} 
-                        disambiguation={result.releases[0].disambiguation ? result.releases[0].disambiguation : ""}
+                        albumName={result.releases ? result.releases[0].title : ""} 
+                        disambiguation={result.releases ? result.releases[0].disambiguation : ""}
                         artistArray={result["artist-credit"] || []} 
                         releaseDate={searchTypeIsSong ? result["first-release-date"] : result["date"] || ""} 
                         trackCount={searchTypeIsSong ? 1 : result["track-count"]}

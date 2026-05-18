@@ -14,6 +14,7 @@ function CompareWorkspace () {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const [charts, setCharts] = useState([]);
+    const [lyrics, setLyrics] = useState([]);
 
     const addChart = () => {
         setCharts([...charts, { id: crypto.randomUUID() }]);
@@ -21,6 +22,18 @@ function CompareWorkspace () {
 
     const onDeleteChart = (id) => {
         setCharts(charts.filter(item => item.id !== id));
+    }
+
+    const AddLyrics = async (artist, title) => {
+        try {
+            const response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
+            if (!response.ok) throw new Error("Cannot fetch lyrics");
+            const result = await response.json();
+            setLyrics((prevLyrics) => [...prevLyrics, result]);
+            console.log(result);
+        } catch (err) {
+            console.error("Error fetching lyrics:", err);
+        }
     }
 
     /** make sure user is signed in
@@ -47,7 +60,7 @@ function CompareWorkspace () {
             <NavigationBar />
             <div className="compare-workspace-container">
                 <div className="cw-left">
-                    <SelectedSongs />
+                    <SelectedSongs AddLyrics={AddLyrics} />
                     <div className="ac-button-container">
                         <button className="primary-button add-chart-button" onClick={addChart}>Add Chart</button>
                     </div>

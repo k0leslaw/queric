@@ -3,7 +3,7 @@ import SelectedSongItem from "../SelectedSongItem/SelectedSongItem";
 import AddSongPopup from "../AddSongPopup/AddSongPopup";
 import "./SelectedSongs.css";
 
-function SelectedSongs () {
+function SelectedSongs ({ AddLyrics }) {
     const [selectedReleases, setSelectedReleases] = useState([]);
     const [isAddingSong, setIsAddingSong] = useState(false);
     const [numReleases, setNumReleases] = useState(0);
@@ -48,6 +48,7 @@ function SelectedSongs () {
                             trackCount={release.trackCount}
                             coverId={release.coverId}
                             removeRelease={removeRelease} 
+                            AddLyrics={AddLyrics}
                         />
                     )
                 })}
