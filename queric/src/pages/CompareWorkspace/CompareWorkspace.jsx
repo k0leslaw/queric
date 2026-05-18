@@ -23,13 +23,15 @@ function CompareWorkspace () {
         setCharts(charts.filter(item => item.id !== id));
     }
 
+    /** make sure user is signed in
     if (!user) {
         alert("Please sign in before using the compare workspace.");
     } else if (!user.email_confirmed_at) {
         alert("Please confirm your email to finish setting up your account.");
     }
-
+    */
     useEffect(() => {
+        /** make sure user is signed in
         const loadUser = async () => {
             const { data, error } = supabase.auth.getUser();
             if (data?.user) setUser(data.user);
@@ -37,6 +39,7 @@ function CompareWorkspace () {
         }
 
         loadUser();
+        */
     }, []);
 
     return (

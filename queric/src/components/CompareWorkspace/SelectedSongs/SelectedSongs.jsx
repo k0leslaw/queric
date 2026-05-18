@@ -1,24 +1,53 @@
+import { useState, useEffect } from "react";
 import SelectedSongItem from "../SelectedSongItem/SelectedSongItem";
-
+import AddSongPopup from "../AddSongPopup/AddSongPopup";
 import "./SelectedSongs.css";
 
 function SelectedSongs () {
+    const [selectedReleases, setSelectedReleases] = useState([]);
+    const [isAddingSong, setIsAddingSong] = useState(false);
+    const [numReleases, setNumReleases] = useState(0);
+
+    const addRelease = async (newRelease) => {
+        if (selectedReleases.some(release => release.id === newRelease.id)) {
+            alert("This release is already selected");
+            return false;
+        }
+        setSelectedReleases((prevReleases) => [...prevReleases, newRelease]);
+        return true;
+    }
+
+    const removeRelease = (idToRemove) => { 
+        let updatedSelectedReleases = selectedReleases.filter(release => release.id !== idToRemove);
+        setSelectedReleases(updatedSelectedReleases);
+    }
+
     return (
         <div className="selected-songs-container">
             <div className="ss-header">
-                <h2 className="header-font">Selected Songs (4)</h2>
+                <h2 className="header-font">{selectedReleases.length} Selected Release{numReleases > 1 || numReleases == 0? "s" : ""}</h2>
                 
             </div>
             <div className="ss-songs">
-                <SelectedSongItem />
-                <SelectedSongItem />
-                <SelectedSongItem />
-                <SelectedSongItem />
+                {selectedReleases.map((release, index) => {
+                    return (
+                        <SelectedSongItem 
+                            key={index} 
+                            id={release.id}
+                            title={release.title} 
+                            artist={release.artist} 
+                            date={release.date}
+                            removeRelease={removeRelease} 
+                        />
+                    )
+                })}
             </div>
             <div className="ss-footer">
-                <button className="primary-button">Add Song</button>
+                <button className="primary-button" onClick={() => setIsAddingSong(true)}>Add Release</button>
                 <button className="secondary-button">Clear</button>
             </div>
+
+            {isAddingSong && <AddSongPopup setIsAddingSong={setIsAddingSong} addRelease={addRelease} />}
         </div>
     )
 }
