@@ -48,6 +48,8 @@ function AddSongPopup ({ setIsAddingSong, addRelease }) {
                 const albumTracks = result.releases || [];
                 setSearchResult(albumTracks);
             }
+
+            console.log(result);
         } catch (err) {
             console.error("Error fetching search results:", err);
         }
@@ -103,7 +105,9 @@ function AddSongPopup ({ setIsAddingSong, addRelease }) {
                         addRelease={addRelease} 
                         release={result} 
                         releaseType={searchTypeIsSong ? "song" : "album"} 
-                        title={result.title} 
+                        title={result.title}
+                        albumName={result.releases[0].title ? result.releases[0].title : ""} 
+                        disambiguation={result.releases[0].disambiguation ? result.releases[0].disambiguation : ""}
                         artistArray={result["artist-credit"] || []} 
                         releaseDate={searchTypeIsSong ? result["first-release-date"] : result["date"] || ""} 
                         trackCount={searchTypeIsSong ? 1 : result["track-count"]}

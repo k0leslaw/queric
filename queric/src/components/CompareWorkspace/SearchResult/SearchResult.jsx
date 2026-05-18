@@ -1,6 +1,6 @@
 import "./SearchResult.css";
 
-function SearchResult ({ title, release, releaseType, artistArray, releaseDate, trackCount, addRelease, setIsAddingSong }) {
+function SearchResult ({ title, albumName, disambiguation, release, releaseType, artistArray, releaseDate, trackCount, addRelease, setIsAddingSong }) {
     const coverTargetId = releaseType === "album"
             ? release.id
             : release.releases?.[0]?.id;
@@ -18,6 +18,8 @@ function SearchResult ({ title, release, releaseType, artistArray, releaseDate, 
             id: release.id,
             type: releaseType,
             title: title,
+            albumName: albumName,
+            disambiguation: disambiguation,
             artist: artistArray.map(a => a.name).join(", "),
             date: releaseDate,
             trackCount: trackCount,
@@ -39,10 +41,17 @@ function SearchResult ({ title, release, releaseType, artistArray, releaseDate, 
                 className="search-result-image"
             />
             <div className="sr-mid-container">
-                <p>{title}</p>
+                <div className="sr-titles">
+                    <p className="sr-song-title">{title}</p>
+                    <div className="sr-artist-year">
+                        <p>{artistArray.map(artist => artist.name).join(", ")}</p>
+                        {releaseDate && <p>({releaseDate.substring(0, 4)})</p>}
+                    </div>
+                    
+                </div>
                 <div className="sr-text-container">
-                    <p>{artistArray.map(artist => artist.name).join(", ")}</p>
-                    {releaseDate != "" && <p>({releaseDate.substring(0, 4)})</p>}
+                    
+                    <p className="sr-album-title">{albumName || "Unknown album"} {disambiguation}</p>
                 </div>
             </div>
             

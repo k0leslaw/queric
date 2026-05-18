@@ -18,13 +18,15 @@ function SelectedSongs () {
     }
 
     const removeRelease = (idToRemove) => { 
-        let updatedSelectedReleases = selectedReleases.filter(release => release.id !== idToRemove);
-        setSelectedReleases(updatedSelectedReleases);
+        if (confirm("Are you sure you want to remove this release?")) {
+            let updatedSelectedReleases = selectedReleases.filter(release => release.id !== idToRemove);
+            setSelectedReleases(updatedSelectedReleases);  
+        }
     }
 
     const clearReleases = () => {
         if (confirm("Are you sure you want to remove all selected releases?")) {
-         setSelectedReleases([]);   
+            setSelectedReleases([]);   
         }
     }
 

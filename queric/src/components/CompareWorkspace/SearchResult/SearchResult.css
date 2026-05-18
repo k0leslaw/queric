@@ -10,11 +10,30 @@
 .sr-mid-container {
     display: flex;
     flex-direction: column;
+    width: 65%;
+}
+.sr-mid-container p {
+    margin: 0px;
 }
 
 .sr-text-container {
     display: flex;
     gap: 5px;
+}
+
+.sr-song-title {
+    font-weight: 400;
+}
+.sr-album-title {
+    font-size: 12px;
+}
+.sr-titles {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sr-artist-year {
+    display: flex;
 }
 
 .search-result-image {

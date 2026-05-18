@@ -5,6 +5,7 @@
 
 .ssi-info {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 3px;
     justify-content: space-evenly;
@@ -12,7 +13,7 @@
 
 .ssi-remove-song {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
 }
 .ssi-remove-song h3 {
     align-self: center;
