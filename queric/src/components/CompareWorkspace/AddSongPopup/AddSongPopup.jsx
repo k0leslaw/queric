@@ -96,19 +96,21 @@ function AddSongPopup ({ setIsAddingSong, addRelease }) {
             
             <button className="primary-button" onClick={handleSearch}>Search</button>
 
-            {searchResult.map((result, index) => (
-                <SearchResult 
-                    key={index} 
-                    addRelease={addRelease} 
-                    release={result} 
-                    releaseType={searchTypeIsSong ? "song" : "album"} 
-                    title={result.title} 
-                    artistArray={result["artist-credit"] || []} 
-                    releaseDate={searchTypeIsSong ? result["first-release-date"] : result["date"] || ""} 
-                    trackCount={searchTypeIsSong ? 1 : result["track-count"]}
-                    setIsAddingSong={setIsAddingSong}
-                />
-            ))}
+            <div className="search-results-container">
+                {searchResult.map((result, index) => (
+                    <SearchResult 
+                        key={index} 
+                        addRelease={addRelease} 
+                        release={result} 
+                        releaseType={searchTypeIsSong ? "song" : "album"} 
+                        title={result.title} 
+                        artistArray={result["artist-credit"] || []} 
+                        releaseDate={searchTypeIsSong ? result["first-release-date"] : result["date"] || ""} 
+                        trackCount={searchTypeIsSong ? 1 : result["track-count"]}
+                        setIsAddingSong={setIsAddingSong}
+                    />
+                ))}
+            </div>
         </div>
     )
 }

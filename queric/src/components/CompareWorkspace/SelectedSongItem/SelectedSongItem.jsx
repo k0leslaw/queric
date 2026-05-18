@@ -4,10 +4,10 @@ function SelectedSongItem ({ id, title, artist, date, trackCount, coverId, remov
     const coverUrl = coverId
         ? `https://coverartarchive.org/release/${coverId}/front-250`
         : null;
-    
+
     const handleImageError = (e) => {
         e.target.src = "https://placehold.co/250x250?text=No+Cover+Art";
-    }
+    };
     
     return (
         <div className="ssi-container">

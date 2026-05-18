@@ -1,11 +1,19 @@
 import "./SearchResult.css";
 
-function SearchResult ({ title, release, releaseType, artistArray, releaseDate, trackCount, coverId, addRelease, setIsAddingSong }) {
-    const handleAddRelease = async () => {
-        const coverTargetId = releaseType === "album"
+function SearchResult ({ title, release, releaseType, artistArray, releaseDate, trackCount, addRelease, setIsAddingSong }) {
+    const coverTargetId = releaseType === "album"
             ? release.id
             : release.releases?.[0]?.id;
 
+        const coverUrl = coverTargetId
+            ? `https://coverartarchive.org/release/${coverTargetId}/front-250`
+            : null;
+
+        const handleImageError = (e) => {
+            e.target.src = "https://placehold.co/250x250?text=No+Cover+Art";
+        }
+
+    const handleAddRelease = async () => {
         const selection = {
             id: release.id,
             type: releaseType,
@@ -23,11 +31,22 @@ function SearchResult ({ title, release, releaseType, artistArray, releaseDate, 
     }
     
     return (
-        <div>
-            <p>Title: {title}</p>
-            <p>{artistArray.map(artist => artist.name).join(", ")}</p>
-            {releaseDate != "" && <p>Released: {releaseDate}</p>}
-            <button onClick={handleAddRelease}>Add</button>
+        <div className="search-result-container">
+            <img 
+                src={`https://coverartarchive.org/release/${coverTargetId}/front-250`}
+                alt={`${title} cover art`}
+                onError={handleImageError}
+                className="search-result-image"
+            />
+            <div className="sr-mid-container">
+                <p>{title}</p>
+                <div className="sr-text-container">
+                    <p>{artistArray.map(artist => artist.name).join(", ")}</p>
+                    {releaseDate != "" && <p>({releaseDate.substring(0, 4)})</p>}
+                </div>
+            </div>
+            
+            <button className="secondary-button" onClick={handleAddRelease}>Add</button>
         </div>
     )
 }
