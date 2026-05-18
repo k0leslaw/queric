@@ -104,7 +104,8 @@ function AddSongPopup ({ setIsAddingSong, addRelease }) {
                     releaseType={searchTypeIsSong ? "song" : "album"} 
                     title={result.title} 
                     artistArray={result["artist-credit"] || []} 
-                    releaseDate={result["first-release-date"] || ""} 
+                    releaseDate={searchTypeIsSong ? result["first-release-date"] : result["date"] || ""} 
+                    trackCount={searchTypeIsSong ? 1 : result["track-count"]}
                     setIsAddingSong={setIsAddingSong}
                 />
             ))}

@@ -22,6 +22,12 @@ function SelectedSongs () {
         setSelectedReleases(updatedSelectedReleases);
     }
 
+    const clearReleases = () => {
+        if (confirm("Are you sure you want to remove all selected releases?")) {
+         setSelectedReleases([]);   
+        }
+    }
+
     return (
         <div className="selected-songs-container">
             <div className="ss-header">
@@ -37,6 +43,8 @@ function SelectedSongs () {
                             title={release.title} 
                             artist={release.artist} 
                             date={release.date}
+                            trackCount={release.trackCount}
+                            coverId={release.coverId}
                             removeRelease={removeRelease} 
                         />
                     )
@@ -44,7 +52,7 @@ function SelectedSongs () {
             </div>
             <div className="ss-footer">
                 <button className="primary-button" onClick={() => setIsAddingSong(true)}>Add Release</button>
-                <button className="secondary-button">Clear</button>
+                <button className="secondary-button" onClick={clearReleases}>Clear</button>
             </div>
 
             {isAddingSong && <AddSongPopup setIsAddingSong={setIsAddingSong} addRelease={addRelease} />}

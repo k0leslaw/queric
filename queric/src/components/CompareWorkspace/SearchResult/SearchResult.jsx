@@ -1,13 +1,19 @@
 import "./SearchResult.css";
 
-function SearchResult ({ title, release, releaseType, artistArray, releaseDate, addRelease, setIsAddingSong }) {
+function SearchResult ({ title, release, releaseType, artistArray, releaseDate, trackCount, coverId, addRelease, setIsAddingSong }) {
     const handleAddRelease = async () => {
+        const coverTargetId = releaseType === "album"
+            ? release.id
+            : release.releases?.[0]?.id;
+
         const selection = {
             id: release.id,
             type: releaseType,
             title: title,
             artist: artistArray.map(a => a.name).join(", "),
             date: releaseDate,
+            trackCount: trackCount,
+            coverId: coverTargetId,
             raw: release
         }
 
