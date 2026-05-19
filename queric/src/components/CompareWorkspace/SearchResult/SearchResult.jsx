@@ -3,7 +3,6 @@ import "./SearchResult.css";
 function SearchResult ({ item, onSelect }) {
     const isAlbum = item.wrapperType === "collection";
     const displayTitle = isAlbum ? item.collectionName : item.trackName;
-    const subtitleContext = isAlbum ? `${item.artistName} • Album` : `${item.artistName} • Track`;
     const releaseYear = item.releaseDate ? item.releaseDate.substring(0, 4) : "";
     
     const fallbackCoverArt = (e) => {
@@ -19,16 +18,11 @@ function SearchResult ({ item, onSelect }) {
                 className="search-result-image"
             />
             <div className="sr-mid-container">
-                <div className="sr-titles">
+                <div className="sr-text">
                     <p className="sr-song-title">{displayTitle}</p>
-                    <div className="sr-artist-year">
-                        <p>{releaseYear} {subtitleContext}</p>
-                    </div>
-                    
-                </div>
-                <div className="sr-text-container">
-                    
-                    <p className="sr-album-title">{/*albumName || "Unknown album"} {disambiguation*/}</p>
+                    <p className="sr-album">{isAlbum ? "" : item.collectionName}</p>
+                    <p className="sr-artist">{item.artistName} • {releaseYear}</p>
+                    <p className="sr-trackcount">{isAlbum ? item.trackCount : ""} {isAlbum ? "tracks" : ""}</p>          
                 </div>
             </div>
             

@@ -23,8 +23,6 @@ function AddSongPopup ({ setIsAddingSong, onItemSelect }) {
                 const response = await fetch(url);
                 const data = await response.json();
                 setResults(data.results || []);
-
-                console.log(data);
             } catch (err) {
                 console.error("Error fetching search results:", err);
             } finally {

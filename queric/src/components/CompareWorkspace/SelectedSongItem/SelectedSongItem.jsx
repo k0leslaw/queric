@@ -1,7 +1,17 @@
 import { useEffect } from "react";
 import "./SelectedSongItem.css";
 
-function SelectedSongItem ({ id, title, artist, date, trackCount, coverUrl, removeRelease }) {
+function SelectedSongItem ({ id, title, artist, date, trackCount, coverUrl, songsToRemove, setSongsToRemove }) {
+    const isChecked = songsToRemove.includes(id);
+
+    const handleCheck = () => {
+        if (isChecked) {
+            setSongsToRemove(prev => prev.filter(songId => songId !== id));
+        } else {
+            setSongsToRemove(prev => [...prev, id]);
+        }
+    }
+
     const fallbackCoverArt = (e) => {
         e.target.src = "https://placehold.co/250x250?text=No+Cover+Art";
     };
@@ -17,10 +27,12 @@ function SelectedSongItem ({ id, title, artist, date, trackCount, coverUrl, remo
             <div className="ssi-info">
                 <h3 className="header-font">{title}</h3>
                 <h3 className="subtitle">{artist} • {date ? date.substring(0, 4) : "Unknown"}</h3>
-                <div className="ssi-remove-song">
-                    {trackCount > 1 && <h3 className="subtitle">Part of {trackCount} song album</h3>}
-                    <button className="primary-button" onClick={() => removeRelease(id)}>Remove</button>
-                </div>
+            </div>
+            <div className="ssi-remove-song">
+                <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheck} />
             </div>
         </div>
     )

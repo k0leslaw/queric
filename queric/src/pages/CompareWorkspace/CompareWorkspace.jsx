@@ -111,16 +111,24 @@ function CompareWorkspace () {
     }
 
     const removeRelease = (id) => {
-        if(confirm("Remove this release from the workspace?")) {
+        if (confirm("Remove this release from the workspace?")) {
             setSongs(prev => prev.filter(song => song.id !== id));
             setLyrics(prev => prev.filter(lyric => lyric.id !== id));
         }
     }
 
     const clearReleases = () => {
-        if (confirm("Clear all selections?")) {
+        if (confirm("Clear all releases?")) {
             setSongs([]);
             setLyrics([]);
+        }
+    }
+
+    const removeSelectedReleases = (ids) => {
+        if (ids.length === 0 ) return;
+        if (confirm(`Remove ${ids.length > 1 ? "all " : ""}${ids.length} selected release${ids.length !== 1 ? "s" : ""} from the workspace?`)) {
+            setSongs(prev => prev.filter(song => !ids.includes(song.id)));
+            setLyrics(prev => prev.filter(lyric => !ids.includes(lyric.id)));
         }
     }
 
@@ -152,6 +160,7 @@ function CompareWorkspace () {
                         selectedSongs={songs} 
                         removeRelease={removeRelease}
                         clearReleases={clearReleases}
+                        removeSelectedReleases={removeSelectedReleases}
                         onItemSelect={(item) => {
                             if (item.wrapperType === "collection") {
                                 handleAddAlbum(item);
