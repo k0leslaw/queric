@@ -6,9 +6,6 @@ import CompareWorkspace from './pages/CompareWorkspace/CompareWorkspace';
 import Upload from './pages/Upload/Upload';
 import Login from './pages/Login/Login';
 
-import HomePage from './pages/HomePage';
-import DataAnalysisPage from './pages/DataAnalysisPage/DataAnalysisPage';
-
 function App() {
   return (
     <>
@@ -18,7 +15,6 @@ function App() {
           <Route path='/compare-workspace' element={ <CompareWorkspace />}></Route>
           <Route path='/upload' element={ <Upload />}></Route>
           <Route path='/login' element={ <Login />}></Route>
-          <Route path='/analysis' element={ <DataAnalysisPage /> }></Route>
         </Routes>
       </Router>
     </>

@@ -1,119 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchResult from "../SearchResult/SearchResult";
 
 import "./AddSongPopup.css";
 
-function AddSongPopup ({ setIsAddingSong, addRelease }) {
-    const [searchTypeIsSong, setSearchTypeIsSong] = useState(true);
-    const [title, setTitle] = useState("");
-    const [artist, setArtist] = useState("");
-    const [searchResult, setSearchResult] = useState([]);
+function AddSongPopup ({ setIsAddingSong, onItemSelect }) {
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState([]);
+    const [searching, setSearching] = useState(false);
 
-    const MB_URL = "https://musicbrainz.org/ws/2/";
-    const MB_USER_AGENT = import.meta.env.VITE_MUSICBRAINZ_USER_AGENT;
-
-    const handleSearch = async () => {
-        if (!title.trim()) {
-            alert("Please enter a title.");
+    useEffect(() => {
+        if (!query.trim()) {
+            setResults([]);
+            setSearching(false);
             return;
         }
 
-        try {
-            const endpoint = searchTypeIsSong ? "recording" : "release";
-            const includeTracks = !searchTypeIsSong ? "&inc=recordings" : "";
-            
-            let query = `${endpoint}:"${title.trim()}"`;
-            if (artist.trim()) {
-                const artistKey = searchTypeIsSong ? "artistname" : "artist";
-                query += ` AND ${artistKey}:"${artist.trim()}"`;
+        setSearching(true);
+
+        const delayTimer = setTimeout(async () => {
+            try {
+                const url = `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=song,album&limit=15`;
+                const response = await fetch(url);
+                const data = await response.json();
+                setResults(data.results || []);
+
+                console.log(data);
+            } catch (err) {
+                console.error("Error fetching search results:", err);
+            } finally {
+                setSearching(false);
             }
+        }, 500);
 
-            const url = `${MB_URL}${endpoint}?query=${encodeURIComponent(query)}${includeTracks}&fmt=json`;
-
-            const response = await fetch(url, {
-                headers: {
-                    "User-Agent": MB_USER_AGENT,
-                    "Accept": "application/json"
-                }
-            });
-
-            if (!response.ok) throw new Error("Cannot fetch search results");
-
-            const result = await response.json();
-            
-            if (searchTypeIsSong) {
-                const releases = result.recordings || [];
-                setSearchResult(releases);
-            } else {
-                const albumTracks = result.releases || [];
-                setSearchResult(albumTracks);
-            }
-
-            console.log(result);
-        } catch (err) {
-            console.error("Error fetching search results:", err);
-        }
-    }
+        return () => clearTimeout(delayTimer);
+    }, [query]);
 
     return (
         <div className="add-song-popup">
-            <form>
-                <h2 className="header-font">Search Type</h2>
-                <label>
-                    <input 
-                        className="subtitle"
-                        type="radio"
-                        name="search-type"
-                        value="song"
-                        checked={searchTypeIsSong === true}
-                        onChange={() => setSearchTypeIsSong(true)}
-                        /> Song
-                </label>
-                <br/>
-                <label>
-                    <input 
-                        className="subtitle"
-                        type="radio"
-                        name="search-type"
-                        value="album"
-                        checked={searchTypeIsSong === false}
-                        onChange={() => setSearchTypeIsSong(false)}
-                        /> Album
-                </label>
-            </form>
+            <h2 className="header-font">Search</h2>
             <div className="search-inputs-container">
                 <input 
                     className="subtitle"
                     type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Title"/>
-                <input 
-                    className="subtitle"
-                    type="text"
-                    value={artist}
-                    onChange={(e) => setArtist(e.target.value)}
-                    placeholder="Artist (optional)"/>
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search by song, album, or artist..."/>
             </div>
-            
-            <button className="primary-button" onClick={handleSearch}>Search</button>
 
             <div className="search-results-container">
-                {searchResult.map((result, index) => (
+                {results.map((item, index) => (
                     <SearchResult 
-                        key={index} 
-                        addRelease={addRelease} 
-                        release={result} 
-                        releaseType={searchTypeIsSong ? "song" : "album"} 
-                        title={result.title}
-                        albumName={result.releases ? result.releases[0].title : ""} 
-                        disambiguation={result.releases ? result.releases[0].disambiguation : ""}
-                        artistArray={result["artist-credit"] || []} 
-                        releaseDate={searchTypeIsSong ? result["first-release-date"] : result["date"] || ""} 
-                        trackCount={searchTypeIsSong ? 1 : result["track-count"]}
-                        setIsAddingSong={setIsAddingSong}
-                    />
+                        key={item.trackId || item.collectionId || index} 
+                        item={item}
+                        onSelect={() => {
+                            onItemSelect(item);
+                            setIsAddingSong(false);
+                        }} />
                 ))}
+                {!searching && query && results.length === 0 && (
+                    <p>No releases found.</p>
+                )}
             </div>
         </div>
     )
