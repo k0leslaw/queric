@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import "./SelectedSongItem.css";
 
-function SelectedSongItem ({ id, title, artist, date, trackCount, coverUrl, songsToRemove, setSongsToRemove }) {
-    const isChecked = songsToRemove.includes(id);
+function SelectedSongItem ({ id, title, artist, date, trackCount, coverUrl, songsSelected, setSongsSelected }) {
+    const isChecked = songsSelected.includes(id);
 
     const handleCheck = () => {
         if (isChecked) {
-            setSongsToRemove(prev => prev.filter(songId => songId !== id));
+            setSongsSelected(prev => prev.filter(songId => songId !== id));
         } else {
-            setSongsToRemove(prev => [...prev, id]);
+            setSongsSelected(prev => [...prev, id]);
         }
     }
 

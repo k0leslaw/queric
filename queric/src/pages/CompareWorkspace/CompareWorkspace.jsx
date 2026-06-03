@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import SelectedSongs from "../../components/CompareWorkspace/SelectedSongs/SelectedSongs";
 import WorkspaceInfo from "../../components/CompareWorkspace/WorkspaceInfo/WorkspaceInfo";
 import Chart from "../../components/CompareWorkspace/Chart/Chart";
+import Groups from "../../components/CompareWorkspace/Groups/Groups";
 
 import "./CompareWorkspace.css";
 import { supabase } from "../../supabaseClient";
@@ -15,6 +16,7 @@ function CompareWorkspace () {
     const [charts, setCharts] = useState([]);
     const [songs, setSongs] = useState([]);
     const [lyrics, setLyrics] = useState([]);
+    const [groups, setGroups] = useState([]);
 
     const addChart = () => {
         setCharts([...charts, { id: crypto.randomUUID() }]);
@@ -110,13 +112,6 @@ function CompareWorkspace () {
         }
     }
 
-    const removeRelease = (id) => {
-        if (confirm("Remove this release from the workspace?")) {
-            setSongs(prev => prev.filter(song => song.id !== id));
-            setLyrics(prev => prev.filter(lyric => lyric.id !== id));
-        }
-    }
-
     const clearReleases = () => {
         if (confirm("Clear all releases?")) {
             setSongs([]);
@@ -130,6 +125,16 @@ function CompareWorkspace () {
             setSongs(prev => prev.filter(song => !ids.includes(song.id)));
             setLyrics(prev => prev.filter(lyric => !ids.includes(lyric.id)));
         }
+    }
+
+    const handleAddGroup = (ids) => {
+        if (ids.length === 0 ) return;
+        const newGroup = {
+            id: crypto.randomUUID(),
+            name: `Group ${groups.length + 1}`,
+            songs: ids
+        }
+        setGroups(prev => [...prev, newGroup]);
     }
 
     /** make sure user is signed in
@@ -158,7 +163,6 @@ function CompareWorkspace () {
                 <div className="cw-left">
                     <SelectedSongs 
                         selectedSongs={songs} 
-                        removeRelease={removeRelease}
                         clearReleases={clearReleases}
                         removeSelectedReleases={removeSelectedReleases}
                         onItemSelect={(item) => {
@@ -167,7 +171,9 @@ function CompareWorkspace () {
                             } else {
                                 handleAddSong(item);
                             }
-                        }} />
+                        }} 
+                        handleAddGroup={handleAddGroup} />
+                    <Groups groups={groups} />
                     <div className="ac-button-container">
                         <button className="primary-button add-chart-button" onClick={addChart}>Add Chart</button>
                     </div>

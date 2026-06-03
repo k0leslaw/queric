@@ -22,6 +22,5 @@
 
 .ss-footer {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
 }
