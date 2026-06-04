@@ -117,6 +117,7 @@ function CompareWorkspace () {
         if (confirm("Clear all releases?")) {
             setSongs([]);
             setLyrics([]);
+            setGroups([]);
         }
     }
 
@@ -125,6 +126,14 @@ function CompareWorkspace () {
         if (confirm(`Remove ${ids.length > 1 ? "all " : ""}${ids.length} selected release${ids.length !== 1 ? "s" : ""} from the workspace?`)) {
             setSongs(prev => prev.filter(song => !ids.includes(song.id)));
             setLyrics(prev => prev.filter(lyric => !ids.includes(lyric.id)));
+            setGroups(prev => {
+                return prev
+                    .map(group => ({
+                        ...group,
+                        songs: group.songs.filter(song => !ids.includes(song.id))
+                }))
+                .filter(group => group.songs.length > 0);
+            });
         }
     }
 
@@ -138,7 +147,7 @@ function CompareWorkspace () {
         setGroups(prev => [...prev, newGroup]);
     }
 
-    const editGroup = (id, newName) => {
+    const editGroupName = (id, newName) => {
         setGroups(prev => 
             prev.map(group => {
                 if (group.id === id) {
@@ -149,24 +158,9 @@ function CompareWorkspace () {
         );
     }
 
-    /** make sure user is signed in
-    if (!user) {
-        alert("Please sign in before using the compare workspace.");
-    } else if (!user.email_confirmed_at) {
-        alert("Please confirm your email to finish setting up your account.");
+    const deleteGroup = (id) => {
+        setGroups(groups.filter(group => group.id !== id))
     }
-    */
-    useEffect(() => {
-        /** make sure user is signed in
-        const loadUser = async () => {
-            const { data, error } = supabase.auth.getUser();
-            if (data?.user) setUser(data.user);
-            setLoading(false);
-        }
-
-        loadUser();
-        */
-    }, []);
 
     return (
         <div>
@@ -186,7 +180,10 @@ function CompareWorkspace () {
                         }} 
                         handleAddGroup={handleAddGroup} 
                         groups={groups} />
-                    {groups.length > 0 && <Groups groups={groups} editGroup={editGroup} />}
+                    {groups.length > 0 && <Groups 
+                                            groups={groups} 
+                                            editGroupName={editGroupName}
+                                            deleteGroup={deleteGroup} />}
                     <div className="ac-button-container">
                         <button className="primary-button add-chart-button" onClick={addChart}>Add Chart</button>
                     </div>

@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+    padding: 5px;
 }
 
 .group-song-container {
