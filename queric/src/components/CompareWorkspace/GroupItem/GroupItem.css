@@ -1,0 +1,33 @@
+.group-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(218, 218, 218);
+}
+
+.group-song-container {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    gap: 10px;
+    border-radius: 3px;
+}
+
+.group-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gs-songs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p {
+    margin: 0;
+}
+
+.gs-songs {
+    width: 100%;
+    display: flex;
+}

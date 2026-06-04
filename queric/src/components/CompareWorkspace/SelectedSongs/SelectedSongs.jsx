@@ -3,7 +3,7 @@ import SelectedSongItem from "../SelectedSongItem/SelectedSongItem";
 import AddSongPopup from "../AddSongPopup/AddSongPopup";
 import "./SelectedSongs.css";
 
-function SelectedSongs ({ selectedSongs, clearReleases, removeSelectedReleases, onItemSelect, handleAddGroup }) {
+function SelectedSongs ({ selectedSongs, clearReleases, removeSelectedReleases, onItemSelect, handleAddGroup, groups }) {
     const [isAddingSong, setIsAddingSong] = useState(false);
     const [songsSelected, setSongsSelected] = useState([]);
 
@@ -17,12 +17,7 @@ function SelectedSongs ({ selectedSongs, clearReleases, removeSelectedReleases, 
                 {selectedSongs.map((song) => (
                     <SelectedSongItem 
                             key={song.id} 
-                            id={song.id}
-                            title={song.title} 
-                            artist={song.artist} 
-                            date={song.date}
-                            trackCount={song.trackCount}
-                            coverUrl={song.coverUrl}
+                            song={song}
                             songsSelected={songsSelected}
                             setSongsSelected={setSongsSelected} />
                 ))}
@@ -30,7 +25,7 @@ function SelectedSongs ({ selectedSongs, clearReleases, removeSelectedReleases, 
             <div className="ss-footer">
                 <button className="primary-button" onClick={() => setIsAddingSong(true)}>Add Release</button>
                 <button className="secondary-button" onClick={() => { removeSelectedReleases(songsSelected); setSongsSelected([]); }}>Delete</button>
-                <button className="secondary-button" onClick={() => { handleAddGroup(selectedSongs); setSongsSelected([]); }}>Group</button>
+                <button className="secondary-button" onClick={() => { handleAddGroup(`Group ${groups.length + 1}`, songsSelected); setSongsSelected([]); }}>Group</button>
                 
             </div>
 

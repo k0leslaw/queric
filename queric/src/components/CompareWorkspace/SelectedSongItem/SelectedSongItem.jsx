@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import "./SelectedSongItem.css";
 
-function SelectedSongItem ({ id, title, artist, date, trackCount, coverUrl, songsSelected, setSongsSelected }) {
-    const isChecked = songsSelected.includes(id);
+function SelectedSongItem ({ song, songsSelected, setSongsSelected }) {
+    const { id, title, artist, date, coverUrl } = song;
+    const isChecked = songsSelected.some(item => item.id === id);
 
     const handleCheck = () => {
         if (isChecked) {
-            setSongsSelected(prev => prev.filter(songId => songId !== id));
+            setSongsSelected(prev => prev.filter(item => item.id !== id));
         } else {
-            setSongsSelected(prev => [...prev, id]);
+            setSongsSelected(prev => [...prev, song]);
         }
     }
 

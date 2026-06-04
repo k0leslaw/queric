@@ -52,7 +52,7 @@ function CompareWorkspace () {
             
             setLyrics(prev => [...prev, { id: uniqueId, artist, title, text: textContent }]);
 
-            console.log(data);
+            // console.log(data);
         } catch (err) {
             console.error("Error fetching lyrics", err);
         }
@@ -95,17 +95,18 @@ function CompareWorkspace () {
                         title: track.trackName,
                         artist: track.artistName,
                         album: albumItem.collectionName,
-                        date: albumItem.collectionDate,
+                        date: albumItem.releaseDate,
                         trackCount: albumItem.trackCount,
                         coverUrl: albumItem.artworkUrl100 ? albumItem.artworkUrl100.replace("100x100bb.jpg", "400x400bb.jpg") : null,
                         duration: track.trackTimeMillis
                     }
                     songsToAppend.push(mappedTrack);
-                    addLyrics(mappedTrack.artist, mappedTrack.title, mappedTrack.duration, mappedTrack.id);
+                    // addLyrics(mappedTrack.artist, mappedTrack.title, mappedTrack.duration, mappedTrack.id);
                 }
             }
             if (songsToAppend.length > 0) {
                 setSongs(prev => [...prev, ...songsToAppend]);
+                handleAddGroup(songsToAppend[0].album, songsToAppend);
             }
         } catch (err) {
             console.error("Error fetching album tracks:", err);
@@ -127,14 +128,25 @@ function CompareWorkspace () {
         }
     }
 
-    const handleAddGroup = (ids) => {
-        if (ids.length === 0 ) return;
+    const handleAddGroup = (name, groupSongs) => {
+        if (groupSongs.length === 0 ) return;
         const newGroup = {
             id: crypto.randomUUID(),
-            name: `Group ${groups.length + 1}`,
-            songs: ids
+            name: name,
+            songs: groupSongs
         }
         setGroups(prev => [...prev, newGroup]);
+    }
+
+    const editGroup = (id, newName) => {
+        setGroups(prev => 
+            prev.map(group => {
+                if (group.id === id) {
+                    return { ...group, name: newName }
+                }
+                return group;
+            })
+        );
     }
 
     /** make sure user is signed in
@@ -172,8 +184,9 @@ function CompareWorkspace () {
                                 handleAddSong(item);
                             }
                         }} 
-                        handleAddGroup={handleAddGroup} />
-                    <Groups groups={groups} />
+                        handleAddGroup={handleAddGroup} 
+                        groups={groups} />
+                    {groups.length > 0 && <Groups groups={groups} editGroup={editGroup} />}
                     <div className="ac-button-container">
                         <button className="primary-button add-chart-button" onClick={addChart}>Add Chart</button>
                     </div>

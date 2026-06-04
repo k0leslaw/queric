@@ -1,23 +1,14 @@
 import { useState } from "react";
 
+import GroupItem from "../GroupItem/GroupItem";
 import "./Groups.css";
 
-function Groups ({ groups }) {
+function Groups ({ groups, editGroup }) {
     return (
         <div className="manage-groups-container">
+            <p className="header-font">Groups</p>
             {groups?.map((group) => (
-                <div key={group.id} className="group-song-container">
-                    
-                    <div>
-                        {group.songs?.map((song) => (
-                            <div key={song.id} className="group-song-container">
-                                <img className="album-cover" src={song.coverUrl}/>
-                                <p>{song.title || "Unknown Title"}</p>
-                                <p>{song.artist || "Unknown Artist"}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                <GroupItem key={group.id} group={group} editGroup={editGroup} />
             ))}
         </div>
     )
