@@ -19,11 +19,16 @@ function GroupItem ({ group, editGroupName, deleteGroup }) {
     return (
         <div className="group-container">
             <div className="group-header">
-                <p>{!isOpen ? 
-                        group.name : 
-                        <input 
-                            type="text" value={newName} onChange={(e) => (setNewName(e.target.value))}/>}</p>
-                <div>
+                <div className="group-name-container">
+                    {!isOpen ? 
+                        <p className="group-name">{group.name}</p> : 
+                        <input
+                            className="group-name-input" 
+                            type="text" 
+                            value={newName} 
+                            onChange={(e) => (setNewName(e.target.value))}/>}
+                </div>
+                <div className="gh-buttons">
                     {isOpen && <button className="secondary-button" onClick={() => (deleteGroup(group.id))}>
                         <FiTrash2 />
                     </button>}

@@ -17,6 +17,23 @@
 .group-header {
     display: flex;
     justify-content: space-between;
+    gap: 5px;
+}
+
+.group-name-input, .group-name {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.group-name {
+    max-width: 193px;
+}
+
+.gh-buttons {
+    display: flex;
+    gap: 5px;
 }
 
 .gs-songs {
